@@ -1,0 +1,49 @@
+.mwCalendar-daysList {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 0 0 0;
+    padding: 0;
+
+}
+
+.mwCalendar-day {
+    box-sizing: border-box;
+    flex-grow: 1;
+    width: 14.28%;
+    height: 100px;
+    padding: 10px 10px;
+    overflow: hidden;
+    list-style: none;
+    border: solid 1px black;
+    /*background: rgba(112, 128, 144, 0.2);*/
+}
+
+.mwCalendar-day.today {
+    background-color: yellow;
+}
+
+.mwCalendar-day.weekend {
+/*    background-color: indianred; */
+	color	: red;
+    border: solid 1px red;
+}
+
+.mwCalendar-day.free {
+    color: green;
+}
+
+.mwCalendar-day.holiday {
+    color: blue;
+}
+
+.mwCalendar-day.prevMonth, 
+.mwCalendar-day.nextMonth
+{
+    color: silver;
+    border: solid 1px silver;
+}
+
+/* Table column sizing
+================================== */
+.mwCalendar-day {
+}

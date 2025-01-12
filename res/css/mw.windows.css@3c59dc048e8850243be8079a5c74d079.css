@@ -1,0 +1,1401 @@
+/* ---- WINDOW ----------------------------------------------------------------------------------------------------------------- */
+
+/* Current layout is based on content-box sizing model, to keep compatability with old browsers */
+/* To keep this way, and not break layout when modern css libs used (like bootstrap) - forcing old model */
+/* This will be changed on next versions redesign */
+
+.mwWindow,
+.mwWindow *,
+.mwWindow *:before,
+.mwWindow *:after {
+	box-sizing		: border-box !important;
+}
+
+.mwWindow {
+	display			: none;
+	position		: fixed;
+
+	margin			: 40px;
+	padding			: 0px;
+	
+	background		: white;
+	box-shadow		: 1px 1px 5px rgba(0, 0, 0, 0.5);
+	z-index			: 3000;
+
+	/* Webkit's "hasLayout fix" */
+	/* Fix for bug caused by certain combination of visibility:hidden and position:* properties */
+	/* Pretty annoying old layout bug in webkit, cauzed by too much optimizaiton :) */
+	-webkit-transform	:  translateZ(0); 	
+}
+
+.mwWindow.maximized {
+	top			: 0 !important;
+	bottom			: 0 !important;
+	left			: 0 !important;
+	right			: 0 !important;
+}
+
+.mwWindow.transition
+{
+	transition		: all 200ms ease-in-out 0ms;
+}
+
+.winEl,
+.winBody {
+	display			: none;
+}
+
+.mwWindow .winBody {
+	display			: block;
+
+	min-width		: 600px; 
+
+	color			: gray;
+	background-color	: #FFFFFF;
+	font			: normal 16px 'Open Sans', sans-serif;
+
+	overflow		: hidden;
+
+	/* 
+	* Leaving space for header and footer, this will be corrected by java
+	* Not anymore!
+	*/
+/*/
+	margin-top		: 41px;
+	margin-bottom		: 41px;
+/**/
+}
+
+@media screen and (min-width: 1680px) {
+
+/* 
+	Normal maximized windows should not get too wide
+	Except debug window - that one should get as big as it can
+*/
+.mwWindow.maximized:not(#w_systemDebug)
+{
+	margin-left		: auto;
+	margin-right		: auto;
+	max-width		: 1600px;
+	
+}
+
+}
+
+/* ---- Header ----------------------------------------------------------------------------------------------------------------- */
+
+.mwWindow .winHeader {
+	position		: relative;
+
+	font			: normal 16px 'Open Sans', sans-serif;
+
+	padding			: 0px;
+	padding-left		: 0px;
+
+	line-height		: 40px;
+	
+	border-bottom		: 1px #DEDEDE solid; 
+
+	background		: #F4F4F4;
+
+	color			: gray;
+
+	text-align		: center;
+	vertical-align		: middle;
+
+	cursor			: move;
+
+}
+
+/* Absolute positioning for header */
+/*/
+.mwWindow .winBody {
+	margin-top		: 41px;
+}
+
+.mwWindow .winHeader {
+
+	position		: absolute;
+	
+	top			: 0px;
+	left			: 0px;
+	right			: 0px;
+}
+/**/
+
+
+.mwWindow .winHeader.moveHover {
+	background		: white no-repeat top center transparent; 
+	transition		: all 200ms ease-in-out 0ms;
+}
+
+.mwWindow .winHeader.moveHover:hover {
+	background		: url('../../cms3t/res/images/tile_head_hover.png') no-repeat center center black;
+}
+
+.mwWindow .winHeader.moveHover:hover * {
+	opacity			: 0;
+	filter			: alpha(opacity=0);
+	-moz-opacity		: 0;
+}
+
+.mwWindow .winHeader SPAN {
+	font-weight		: normal;
+}
+
+/* ---- Tools ---- */
+
+.mwWindow .winTools {
+	position		: absolute;
+	top			: 0px;
+	right			: 0px;
+	background		: transparent;
+}
+
+.mwWindow .winTool {
+	position		: relative;
+	float			: left;
+
+	width			: 40px;
+	height			: 40px;
+	line-height		: 40px;
+
+	text-align		: center;
+	vertical-align		: middle;
+
+	cursor			: pointer;
+
+	transition		: all 0.2s ease-in-out;
+}
+
+.mwWindow .winTool:hover {
+	background-color	: silver;
+} 
+
+.mwWindow .winTool { position: relative; }
+.mwWindow .winTool:before { content: ''; display: block; width: 28px; height: 28px; margin: 0px; position: absolute; top: 50%; margin-top: -14px; pointer-events: none; background: url('../../cms3t/res/images/dialogs/icons.28x.png') no-repeat transparent; background-position: 28px 0px; }
+.mwWindow .winTool.left:before { left: 0; right: auto; margin-left: 0px; margin-right: 0px; }
+.mwWindow .winTool:before, .mwWindow .winTool.center:before { left: 50%; right: auto; margin-left: -14px; margin-right: 0px; }
+.mwWindow .winTool.right:before { left: auto; right: 0; margin-left: 0px; margin-right: 0px; }
+.mwWindow .winTool.close:before { background-position: -756px -28px; }
+
+/* Help container. Parsed element, thus always hidden */
+.mwWindow .winTool.help,
+.mwWindow .winHelp,
+.mwWindow .winHelpPage
+{
+	display			: none; 
+}
+
+/* Empty class for IDE autocompletions  */
+.mwWindow .winCloseClick {
+}
+
+.mwWindow .winHelpClick {
+}
+
+/* Close button is optional */
+
+.mwWindow .winFooter .winCloseClick {
+	display			: none !important; 
+}
+
+
+/* ---- Tabs ---- */
+
+.mwWindow .winTabs {
+	display			: block;
+	list-style		: none;
+	
+	margin			: 0px;
+	padding			: 0px;
+	 
+	border-bottom		: 2px solid #DEDEDE;
+}
+
+.mwWindow .winTabs:after {
+	content			: '';
+	display			: block;
+	clear			: both;
+}
+
+/* Adding even width, based on siblings count */
+/* Supporting up to 10 columns, that's more than sufficient in real life */
+.mwWindow .winTabs li {
+	position		: relative;
+	float			: left;
+	clear			: none;
+
+	color			: gray;
+
+	height			: 40px;
+	line-height		: 40px;
+	
+	text-align		: center;
+
+	transition		: color 200ms ease-in-out 0ms;
+
+	cursor			: pointer;
+	
+	white-space		: nowrap;
+}
+
+.mwWindow .winTabs li.selected {
+	color			: #2EB7A0;
+}
+
+.mwWindow .winTabs li:first-child:nth-last-child(1), .mwWindow .winTabs li:first-child:nth-last-child(1) ~ li { width : 100% !important; }
+.mwWindow .winTabs li:first-child:nth-last-child(2), .mwWindow .winTabs li:first-child:nth-last-child(2) ~ li { width : 50% !important; }
+.mwWindow .winTabs li:first-child:nth-last-child(3), .mwWindow .winTabs li:first-child:nth-last-child(3) ~ li { width : 33.33% !important; }
+.mwWindow .winTabs li:first-child:nth-last-child(4), .mwWindow .winTabs li:first-child:nth-last-child(4) ~ li { width : 25% !important; }
+.mwWindow .winTabs li:first-child:nth-last-child(5), .mwWindow .winTabs li:first-child:nth-last-child(5) ~ li { width : 20% !important; }
+.mwWindow .winTabs li:first-child:nth-last-child(6), .mwWindow .winTabs li:first-child:nth-last-child(6) ~ li { width : 16.66% !important; }
+.mwWindow .winTabs li:first-child:nth-last-child(7), .mwWindow .winTabs li:first-child:nth-last-child(7) ~ li { width : 14.28% !important; }
+.mwWindow .winTabs li:first-child:nth-last-child(8), .mwWindow .winTabs li:first-child:nth-last-child(8) ~ li { width : 12.5% !important; }
+.mwWindow .winTabs li:first-child:nth-last-child(9), .mwWindow .winTabs li:first-child:nth-last-child(9) ~ li { width : 11.11% !important; }
+.mwWindow .winTabs li:first-child:nth-last-child(10), .mwWindow .winTabs li:first-child:nth-last-child(10) ~ li { width : 10% !important; }
+
+/* Adding floating border 
+   By default it's hidden on right 
+   All after selected are hidden on left
+   Selected cell have full width
+*/
+
+.mwWindow .winTabs li:after {
+	content			: '';
+	display			: block;
+	
+	position		: absolute;
+	
+	bottom			: -2px;
+	right			: 0;
+	left			: 100%;		
+
+	height			: 0px;
+	
+	border-bottom		: 2px solid #2EB7A0;
+
+	transition		: left 150ms ease 0ms, right 150ms ease 0ms;
+
+}
+
+.mwWindow .winTabs li.selected:after {
+	right			: 0px;
+	left			: 0px;		
+}
+
+.mwWindow .winTabs li.selected ~ li:after {
+	left			: 0px;		
+	right			: 100%;		
+}
+
+/* ---- FOOTER -------------------------------------------------------------------------------------------------------------- */
+
+.mwWindow .winFooter {
+
+	overflow		: hidden;
+
+	position		: relative;
+	
+	height			: 41px; 
+	margin			: 0px;
+	padding-left		: 40px;	
+
+	border-top		: 1px #DEDEDE solid;
+	background		: #FFFFFF;
+
+	text-align		: right;
+}
+
+/* Absolute positioning for footer */
+/**/
+.mwWindow .winBody {
+	margin-bottom		: 41px;
+}
+
+.mwWindow .winFooter {
+
+	position		: absolute;
+	
+	bottom			: 0px;
+	left			: 0px;
+	right			: 0px;
+}
+/**/
+
+/* ---- Status ---- */
+
+.mwWindow .winStatus {
+	display			: table-cell;
+
+	height			: 40px;
+
+	color			: gray;
+
+	vertical-align		: middle;
+	text-align		: left;
+}
+
+.mwWindow .winStatus .status {
+	font			: normal 13px 'Open Sans', sans-serif;
+
+	position		: relative;
+	display			: table-cell;
+
+	height			: 40px;
+	line-height		: 16px; 
+
+	padding-left		: 38px;
+	padding-right		: 10px;
+
+	color			: gray;
+
+	vertical-align		: middle;
+	text-align		: left;
+}
+
+
+	.mwWindow .winStatus .status.normal	{
+		color			: gray;
+	}
+
+
+	.mwWindow .winStatus .status.processing	{
+		color			: #0099FF;
+	}
+
+
+	.mwWindow .winStatus .status.success	{
+		color			: #2EB7A0;
+	}
+
+
+	.mwWindow .winStatus .status.error	{
+		color			: #FF0000;
+	}
+
+
+	.mwWindow .winStatus .status.warning	{
+		color			: #ED8A1B;
+	}
+
+
+	.mwWindow .winStatus .status.hint	{
+		color			: #31A2DB;
+	}
+
+
+
+.mwWindow .winStatus .status { position: relative; }
+.mwWindow .winStatus .status:before { content: ''; display: block; width: 28px; height: 28px; margin: 0px; position: absolute; top: 50%; margin-top: -14px; pointer-events: none; background: url('../../cms3t/res/images/dialogs/icons.28x.png') no-repeat transparent; background-position: 28px 0px; }
+.mwWindow .winStatus .status:before, .mwWindow .winStatus .status.left:before { left: 0; right: auto; margin-left: 0px; margin-right: 0px; }
+.mwWindow .winStatus .status.center:before { left: 50%; right: auto; margin-left: -14px; margin-right: 0px; }
+.mwWindow .winStatus .status.right:before { left: auto; right: 0; margin-left: 0px; margin-right: 0px; }
+.mwWindow .winStatus .status.success:before { background-position: -644px -56px; }
+.mwWindow .winStatus .status.error:before { background-position: -672px -56px; }
+.mwWindow .winStatus .status.hint:before { background-position: -700px -56px; }
+.mwWindow .winStatus .status.warning:before { background-position: -728px -56px; }
+
+/* ---- Loader ---- */
+
+.mwWindow .winLoader {
+	
+	position		: absolute;
+	
+	top			: 0px;
+	bottom			: 0px;
+	left			: 0px;
+	right			: 0px;
+
+	height			: 100%;
+
+	background		: #FFFFFF;
+	
+	display			: none;
+}
+
+/* ---- Submit ---- */
+
+.mwWindow .winSubmit {
+	float			: right;
+	height			: 100%;	
+}
+
+.mwWindow .winSubmit>DIV {	/* Divs in there will create groups */
+	display			: inline-block;
+	padding			: 0px 0px;
+}
+
+.mwWindow .winFooter .Divider,
+.mwWindow .winFooter A {
+	font			: normal 18px 'Open Sans', sans-serif;
+	
+	display			: block; 
+	position		: relative;
+	float			: left;
+	
+	min-width		: 140px;
+	height			: 40px;
+	line-height		: 40px;
+	
+	padding			: 0px 40px;
+	
+	color			: white;
+	background		: #AAAAAA;
+
+	text-decoration		: none;
+	text-align		: center;
+	
+	cursor			: pointer;
+
+	transition		: all 200ms ease-in-out 0ms;
+
+}
+
+.mwWindow .winFooter A { position: relative; }
+.mwWindow .winFooter A:before { content: ''; display: block; width: 28px; height: 28px; margin: 0px; position: absolute; top: 50%; margin-top: -14px; pointer-events: none; background: url('../../cms3t/res/images/dialogs/icons.28x.png') no-repeat transparent; background-position: 28px 0px; }
+.mwWindow .winFooter A.left:before { left: 0; right: auto; margin-left: 0px; margin-right: 0px; }
+.mwWindow .winFooter A:before, .mwWindow .winFooter A.center:before { left: 50%; right: auto; margin-left: -14px; margin-right: 0px; }
+.mwWindow .winFooter A.right:before { left: auto; right: 0; margin-left: 0px; margin-right: 0px; }
+.mwWindow .winFooter A.ok:before { background-position: -868px 0px; }
+.mwWindow .winFooter A.apply:before { background-position: -840px 0px; }
+.mwWindow .winFooter A.close:before { background-position: -896px 0px; }
+.mwWindow .winFooter A.cancel:before { background-position: -924px 0px; }
+
+
+.mwWindow .winFooter A.max {
+	min-width		: 180px;
+}
+
+.mwWindow .winFooter A.mid {
+	min-width		: 140px;
+}
+
+.mwWindow .winFooter A.apply, 
+.mwWindow .winFooter A.close, 
+.mwWindow .winFooter A.min {
+	min-width		: 120px;
+}
+
+.mwWindow .winFooter A.divider {
+	width			: 2px;
+	cursor			: default;
+}
+
+.mwWindow .winFooter A.divider:after {
+	content			: '|';
+}
+
+.mwWindow .winFooter A.apply,
+.mwWindow .winFooter A.hi {
+	background-color	: #2EB7A0;
+}
+
+.mwWindow .winFooter A:hover {
+	background-color	: gray;
+	text-shadow		: 0px 0px 1px white;
+}
+
+/* ---- Simplified bars ---- */
+
+/* 	
+ *	This layout is simplier and can be used with external libs, 
+ * 	but does not allows advanced layouts (makes them tricky)
+ */ 
+ 
+.mwWindow .winBody.noBars {
+	margin-top		: 0px;
+	margin-bottom		: 0px;
+}
+
+.mwWindow .winBody.noFooter {
+	margin-bottom		: 0px;
+}
+
+.mwWindow .winBody.noBars .winHeader,
+.mwWindow .winBody.noBars .winFooter 
+.mwWindow .winBody.noFooter .winFooter 
+{
+	margin			: 0;
+	position		: static;	
+}
+
+/* ---- Responsive ------------------------------------------------------------------------------------------------------------- */
+
+@media screen and (max-width: 1000px), screen and (max-height: 480px) {
+
+.mwWindow {
+	padding			: 0px;
+	margin			: 0px;
+}
+
+.mwWindow .winHeader {
+	margin			: 0px;
+}
+
+.mwWindow .winFooter {
+	margin			: 0px;
+}
+
+.mwWindow .winTools {
+	top			: 0px;
+	right			: 0px;
+}
+
+}
+
+/* ==== Body ================================================================================================================ */ 
+
+.mwWindow .winContent {
+}
+
+/* ---- General Layout ---- */
+
+.mwWindow form,
+.mwWindow .winContainer,
+.mwWindow .winContent {
+	display			: block;
+	position		: relative;
+
+	margin			: 0px;
+	padding			: 0px;
+
+	clear			: both;
+
+	overflow		: hidden;
+	overflow-y		: auto;
+	overflow-x		: hidden;
+}
+
+.mwWindow .noScroll,
+.mwWindow .noScrollTmp,
+.mwWindow.noScrollTmp .flex
+{
+	overflow		: hidden; 
+}
+
+.mwWindow .winContainer.autoScroll,
+.mwWindow .winContent.autoScroll
+{
+}
+
+.mwWindow .winContainer.autoScroll.visible:not(.auto),
+.mwWindow .winContent.autoScroll.visible:not(.auto)
+{
+	overflow		: visible;
+}
+
+.mwWindow .winContent.loading
+{
+	background		: url('../../cms3t/res/images/forms/loading.48x.gif') no-repeat center transparent;
+}
+
+.mwWindow .winContainer.transition,
+.mwWindow .winContent.transition
+{
+	transition		: all 200ms ease-in-out 0ms;
+	overflow		: hidden; 
+}
+
+/* ---- Complex layout ---- */
+
+.mwWindow .winRow {
+	clear			: both;
+	overflow		: hidden;
+}
+
+.mwWindow .winRow:after {
+	content			: '';
+	display			: none;
+	clear			: both;
+}
+
+.mwWindow .winRow>.winContainer,
+.mwWindow .winRow>.winContent,
+.mwWindow .winRow>.winContent.left {
+	clear			: none;
+	float			: left;
+}
+
+.mwWindow .winRow>.winContainer.right,
+.mwWindow .winRow>.winContent.right {
+	clear			: none;
+	float			: right;
+}
+
+.mwWindow .winRow>.winContainer.auto,
+.mwWindow .winRow>.winContent.auto {
+	clear			: none;
+	float			: none;
+	width			: auto;
+}
+
+/* 
+ *	Will allow content to force full window height	
+ * 	It will be limited to correct height anyway 
+ *	So using height over 9000!
+ */
+.mwWindow .winContent.full,
+.mwWindow .winContainer.full
+{
+/*	height			: 9001px; */  	
+}
+
+.mwWindow .winContent.fixed,
+.mwWindow .winContainer.fixed,
+{
+	height			: 1px;
+}
+
+/* ---- Dividers/Spacers ---- */
+
+.mwWindow .winRow>.winContainer {
+	border-right		: 1px #DEDEDE solid;
+}
+
+.mwWindow .winRow>.winContainer:last-child {
+	border-right		: none;
+}
+
+.mwWindow .winHDivider
+{
+	border			: none;
+	border-bottom		: 1px #DEDEDE solid;
+
+	height			: 0px;
+	margin			: 0;
+	padding-top		: 40px;
+	
+	clear			: both; 
+}
+
+.mwWindow .winRow.tools+.winHDivider, 
+.mwWindow .winContent.tools+.winHDivider 
+{
+	padding-top		: 20px;
+}
+
+.mwWindow .winBody div.winHDivider+.winContent,
+.mwWindow .winBody div.winHDivider+.winRow>.winContent
+{
+	padding-top		: 40px;
+}
+
+.mwWindow .winBody div.winHDivider.thinpads,
+.mwWindow .winBody div.winHDivider.thinpads+.winContent,
+.mwWindow .winBody div.winHDivider.thinpads+.winRow>.winContent
+{
+	padding-top		: 20px;
+}
+
+.mwWindow .winVDivider {
+	border-left		: 1px #DEDEDE solid;
+	
+	float			: left;
+	
+	width			: 0px;
+	height			: 100%;
+	min-height		: 2px;
+
+	margin			: 0 20px;
+}
+
+.mwWindow .winHSpacer {
+	clear			: both; 
+}
+
+.mwWindow .winHSpacer+.winContent,
+.mwWindow .winHSpacer+.winRow>.winContent {
+	padding-top		: 40px !important;
+}
+
+.mwWindow .winHSpacer.thinpads+.winContent,
+.mwWindow .winHSpacer.thinpads+.winRow>.winContent {
+	padding-top		: 20px !important;
+}
+
+/* ---- Paddings Control ---------------------------------------------------------------------------------------------------- */
+
+/* 
+	By default contents have thick horisontal paddings
+	This is negated by combos. 
+
+	First and last children of container have top or bottom paddings
+	Row manages all contents inside.
+*/ 
+
+.mwWindow .winContent {
+	padding			: 40px 80px;
+}
+
+.mwWindow .winContent.tools,
+.mwWindow .winRow.tools>.winContent 
+{
+	padding-top		: 20px;
+	padding-bottom		: 20px;
+}
+
+.mwWindow .winContent.thinpads 
+{
+	padding			: 20px;
+}
+
+/* ---- Scroll Fix ---- */
+
+/* For correct scrolling - adding small transparent box on bottom of padded content instead of padding */
+/**/
+.mwWindow .winContent:not(.noScrollFix)
+{
+	padding-bottom		: 0px;  
+}
+
+.mwWindow .winContent:not(.noScrollFix):after
+{
+	content			: '';
+	display			: block;
+	width			: 100%;
+	height			: 40px;
+	clear			: both;
+}
+
+.mwWindow .winContent.tools:not(.noScrollFix):after,
+.mwWindow .winRow.tools>.winContent:not(.noScrollFix):after
+{
+	content			: '';
+	display			: block;
+	width			: 100%;
+	height			: 20px;
+	clear			: both;
+}
+
+.mwWindow .winContent.thinpads:not(.noScrollFix):after 
+{
+	content			: '';
+	display			: block;
+	width			: 100%;
+	height			: 20px;
+	clear			: both;
+}
+/**/
+/* ---- Top/Bottom ---- */
+
+.mwWindow :not(.winRow)>.winContent ~ .winContent,
+.mwWindow :not(.winRow)>.winContent ~ .winRow>.winContent,
+.mwWindow .winRow ~ .winContent,
+.mwWindow .winRow ~ .winRow>.winContent,
+.mwWindow .winContent>.winContent,
+.mwWindow .winContent>.winRow>.winContent
+{
+	padding-top		: 0px;
+}
+
+.mwWindow :not(.winRow)>.winContent:not(:last-child),
+.mwWindow .winRow:not(:last-child)>.winContent,
+.mwWindow .winContent>.winContent,
+.mwWindow .winContent>.winRow>.winContent
+{
+	padding-bottom		: 0px;
+}
+
+/* Also removing scroll fix box */
+.mwWindow :not(.winRow)>.winContent:not(.noScrollFix):not(:last-child):after,
+.mwWindow .winRow:not(:last-child)>.winContent:not(.noScrollFix):after,
+.mwWindow .winContent>.winContent:not(.noScrollFix):after,
+.mwWindow .winContent>.winRow>.winContent:not(.noScrollFix):after
+{
+	display			: none;
+}
+
+/* ---- Left/Right ---- */
+
+/* winContent inside winRow or other winContent does not have thick paddings */
+.mwWindow .winContent.thickpads {
+	padding-left		: 80px;  
+	padding-right		: 80px;  
+}
+
+.mwWindow .winContent .winContent,
+.mwWindow .winRow .winContent,
+.mwWindow .winContent.normalpads
+{
+	padding-left		: 40px;  
+	padding-right		: 40px;  
+}
+
+.mwWindow .winContent .winContent.thinpads,
+.mwWindow .winRow .winContent.thinpads,
+.mwWindow .winContent.thinpads.normalpads
+{
+	padding-left		: 20px;  
+	padding-right		: 20px;  
+}
+
+.mwWindow .winRow>.winContent:not(:first-child) 
+{
+	padding-left		: 20px;
+}
+.mwWindow .winRow>.winContent:not(:last-child) 
+{
+	padding-right		: 20px;
+}
+
+.mwWindow .winRow>.winContent.thinpads:not(:first-child) {
+	padding-left		: 10px;
+}
+.mwWindow .winRow>.winContent.thinpads:not(:last-child) {
+	padding-right		: 10px;
+}
+
+.mwWindow .winContent>.winContent {
+	padding-right		: 0px;
+	padding-left		: 0px;
+} 
+
+.mwWindow .winContent>.winRow>.winContent:first-child,
+.mwWindow .winContent>.winRow>.winContent.left
+{
+	padding-left		: 0px;
+} 
+
+.mwWindow .winContent>.winRow>.winContent:last-child,
+.mwWindow .winContent>.winRow>.winContent.right
+{
+	padding-right		: 0px;
+} 
+
+/* ---- Panels ---- */
+
+.mwWindow .winRow>div
+{
+	transition		: width 200ms ease-in-out 0ms, padding 200ms ease-in-out 0ms, margin 200ms ease-in-out 0ms, border-width 200ms ease-in-out 0ms;
+}
+
+/* Normal states */
+
+.mwWindow .winRow>.winContent.auto {
+	padding-left		: 40px;  
+	padding-right		: 40px;  
+}
+
+.mwWindow .winRow>.winContent.left {
+	padding-right		: 20px;
+	padding-left		: 40px;  
+}
+
+.mwWindow .winRow>.winContent.right {
+	padding-left		: 20px;
+	padding-right		: 40px;  
+}
+
+/* Middle contents */
+
+.mwWindow .winRow>.left~.winContent {
+	padding-left		: 20px;
+}
+
+.mwWindow .winRow>.right~.winContent:last-child {
+	padding-right		: 20px;
+}
+
+/* Hiding panels */
+
+.mwWindow .winRow>.left.hidden,
+.mwWindow .winRow>.right.hidden 
+{
+	width			: 0px !important;
+	padding-left		: 0px !important;
+	padding-right		: 0px !important;
+	overflow		: hidden;
+}
+
+.mwWindow .winRow>.left.hidden~.winContent:not(.right)
+{
+	padding-left		: 40px;
+}
+
+.mwWindow .winRow>.left.hidden~.winContent:not(.right)~.winContent:not(.right)
+{
+	padding-left		: 20px;
+} 
+
+.mwWindow .winRow>.right.hidden~.winContent:last-child 
+{
+	padding-right		: 40px;
+}
+
+.mwWindow .winRow>.panel>*:not(.mwInput)
+{
+	min-width		: 200px;
+}
+
+.mwWindow .winRow>.winContainer.panel>.winContent
+{
+	min-width		: 280px;
+}
+
+/* Dividers */
+
+.mwWindow .winRow>.winContainer.right 
+{
+	border-right		: none;
+}
+
+.mwWindow .winRow>.winContainer.right~*:last-child 
+{
+	border-right		: 1px #DEDEDE solid;
+}
+
+.mwWindow .winRow>.winContainer.left.hidden 
+{
+	border-right-width	: 0px;
+}
+
+.mwWindow .winRow>.winContainer.right.hidden~*:last-child 
+{
+	border-right-width	: 0px;
+}
+
+/* ---- Forced general ---- */
+
+.mwWindow .winContent.nopads {
+	padding			: 0px;
+}
+
+.mwWindow .winContent.nopad-top {
+	padding-top		: 0px;
+}
+
+.mwWindow .winContent.nopad-bottom {
+	padding-bottom		: 0px;
+}
+
+.mwWindow .winContainer.fixheight, 
+.mwWindow .winContent.fixheight 
+{
+	height			: 1px;
+}
+
+/* ---- Forced Sides ---- */
+
+.mwWindow .winContent.hpads {
+	padding			: 0px 40px;
+}
+
+.mwWindow .winContent.vpads {
+	padding			: 40px 0px;
+}
+
+.mwWindow .winContent.pad-top {
+	padding-top		: 40px;
+}
+
+.mwWindow .winContent.pad-bottom {
+	padding-bottom		: 40px;
+}
+
+.mwWindow .winContent.pad-left {
+	padding-left		: 40px;
+}
+
+.mwWindow .winContent.pad-right {
+	padding-right		: 40px;
+}
+
+/* ---- Paddings: Thin Sides ---- */
+
+.mwWindow .winContent.thinpads.hpads {
+	padding			: 0px 20px;
+}
+
+.mwWindow .winContent.thinpads.vpads {
+	padding			: 20px 0px;
+}
+
+.mwWindow .winContent.thinpads.pad-top {
+	padding-top		: 20px;
+}
+
+.mwWindow .winContent.thinpads.pad-bottom {
+	padding-bottom		: 20px;
+}
+
+.mwWindow .winContent.thinpads.pad-left {
+	padding-left		: 20px;
+}
+
+.mwWindow .winContent.thinpads.pad-right {
+	padding-right		: 20px;
+}
+
+/* ==== Contents ============================================================================================================ */ 
+
+/* ---- BG Hint ---- */
+
+.mwWindow A {
+	color			: #2EB7A0;
+}
+
+.winBgHint {
+	position		: relative;
+/*	padding-bottom		: 80px !important; */
+}
+
+.winBgHint:before {
+	content			: attr(data-hint);
+	display			: table-cell;
+	position		: absolute;
+/*/
+	top			: 0px;
+	bottom			: 0px;  
+	left			: 0px;
+	right			: 0px;
+	
+/*/	
+	top			: 50%;  
+	left			: 50%;
+	width			: 300px;
+	margin-top		: -100px;
+	margin-left		: -150px;
+/**/
+
+	padding			: 40px;
+	
+	text-align		: center;
+	vertical-align		: middle;
+	
+}
+
+/* ---- Side tabs ---- */
+
+
+.winSideTabs UL, 
+UL.winSideTabs {
+	padding			: 0px;
+	margin			: 0px;
+	list-style		: none;
+}
+
+UL.winSideTabs UL,
+.winSideTabs UL UL {
+	margin-left		: 40px;   
+}
+
+.winSideTabs LI {
+/*	padding-bottom		: 2px; */
+}
+
+.winSideTabs LI LI {
+/*	padding-left		: 20px; */  
+}
+
+.winSideTabs A {
+	font			: normal 16px 'Open Sans', sans-serif;
+	
+	display			: block;
+	padding			: 0px 10px;
+
+	cursor			: pointer; 
+
+	border			: 1px solid #F3F3F3;
+/*	outline			: 1px solid #D5D5D5; */
+	margin			: 1px;
+
+	line-height		: 32px;
+	height			: 32px;
+	
+	white-space		: nowrap;
+	overflow		: hidden;
+	
+	color			: #636363;
+	text-decoration		: none;
+}
+
+.winSideTabs .Placeholder {
+	height			: 32px;
+	border			: 1px #2EB7A0 dotted;
+/*	outline			: 1px solid #2EB7A0; */
+/*	margin			: 1px; */
+}
+
+.winSideTabs .PlaceholderErr {
+	border			: 1px #D5D5D5 solid;
+	outline			: 1px solid red;
+	margin			: 1px;
+}
+
+.winSideTabs .Selected>A,
+.winSideTabs A:hover {
+	color			: #636363;
+	text-decoration		: none;
+}
+
+.winSideTabs .Selected>A {
+
+	border			: 1px #2EB7A0 solid;
+	outline			: none;
+}
+
+.winSideTabs .Disabled {
+	color			: #AAAAAA;
+}
+
+.winSideTabs P.Head {
+	padding			: 5px 20px;
+}
+
+/* Draggable tabs */
+
+.winSideTabs.draggable A { position: relative; }
+.winSideTabs.draggable A:after { content: ''; display: block; width: 28px; height: 28px; margin: 2px; position: absolute; top: 50%; margin-top: -14px; pointer-events: none; background: url('../../cms3t/res/images/dialogs/icons.28x.png') no-repeat transparent; background-position: 28px 0px; }
+.winSideTabs.draggable A:after, .winSideTabs.draggable A.left:after { left: 0; right: auto; margin-left: 2px; margin-right: 0px; }
+.winSideTabs.draggable A.center:after { left: 50%; right: auto; margin-left: -14px; margin-right: 0px; }
+.winSideTabs.draggable A.right:after { left: auto; right: 0; margin-left: 0px; margin-right: 2px; }
+.winSideTabs.draggable A:after { background-position: -420px -28px; }
+.winSideTabs.draggable A:hover:after { background-position: -420px -56px; }
+
+.winSideTabs.draggable A {
+	padding-left		:  32px;
+}
+
+.winSideTabs.draggable A:after {
+	cursor			: move;
+	pointer-events		: auto;
+}
+
+/* ---- Hints ---- */
+
+.mwWindow .winContent .hint,
+.mwWindow .winContent .toolTips {
+	font			: normal normal 11px 'Open Sans', sans-serif;
+}
+
+.mwWindow .winBody .hint {
+	text-align		: center;	
+}
+
+.mwWindow .winBody .hint.left {
+	text-align		: left;	
+}
+
+.mwWindow .winBody .toolTips {
+	padding-left		: 32px;
+	text-align		: left;
+	
+	background		: url('../../cms3t/res/images/status/Info.png') left center no-repeat transparent;
+}
+
+/* ---- Loader Window ------------------------------------------------------------------------------------------------------- */
+
+.mwWindow.LoaderWindow {
+	padding			: 0px;
+}
+
+.mwWindow.LoaderWindow .winBody {
+	
+	width			: 300px;
+	min-width		: 300px;
+	height			: 50px;
+	
+	margin			: 0px;
+}
+
+
+/**/
+/* ---- JQM ----------------------------------------------------------------------------------------------------------------- */
+
+.mwOverlay {
+	display			: none;
+/**/	
+	background		: rgba(0, 0, 0, 0.7);
+	
+/*/	
+	background		: black;
+
+	opacity			: 0.7;
+	filter			: alpha(opacity=70);
+	-moz-opacity		: 0.7;
+/**/
+	
+	position		: fixed;
+	
+	top			: 0;
+	left			: 0;
+	right			: 0;
+	bottom			: 0;
+	
+	z-index			: 3000;
+}
+
+/* Background iframe styling for IE6. Prevents ActiveX bleed-through (<select> form elements, etc.) */
+* iframe.jqm {
+	position		: absolute;
+	top			: 0;
+	left			: 0;
+	z-index			: -1;
+	width			: expression(this.parentNode.offsetWidth+'px');
+	height			: expression(this.parentNode.offsetHeight+'px');
+}
+
+/* Fixed posistioning emulation for IE6
+     Star selector used to hide definition from browsers other than IE6
+     For valid CSS, use a conditional include instead */
+* html .mwWindow {
+     position			: absolute;
+     top			: expression((document.documentElement.scrollTop || document.body.scrollTop) + Math.round(17 * (document.documentElement.offsetHeight || document.body.clientHeight) / 100) + 'px');
+}
+
+/* ---- CONFIRMATIONS ---------------------------------------------------------------------------------------------------------- */
+
+#systemConfirmation { 
+	min-width		: 600px; 
+}
+
+.mwWindow .Confirmation,
+.mwWindow .Alert
+{        
+/*	background		: url('/cms3t/res/images/status/Question.48x.png') no-repeat transparent; */
+
+/*	display			: table-cell; */
+
+	text-align		: center;
+	vertical-align		: middle;
+
+/*/
+	min-width		: 400px;
+	max-width		: 600px;
+/**/
+
+/*/
+	padding-left		: 68px;
+	height			: 60px; 
+
+
+	background-position	: 10px center;
+/*/
+
+/*	padding-top		: 60px; */
+/*	min-height		: 50px; */
+
+/*/
+	min-width		: 300px;
+	max-width		: 400px;
+/**/
+	background-position	: top center;
+
+/**/
+}
+
+.mwWindow .Alert {
+	background-image	: url('../../cms3t/res/images/status/Warning.48x.png');
+}
+
+/* Hiding icon as test */
+.mwWindow .Confirmation,
+.mwWindow .Alert
+{
+	background		: none;
+	padding			: 0px;
+	text-align		: center;
+}
+
+/* ---- NOTIFICATION -------------------------------------------------------------------------------------------------------- */
+
+#mwNotification
+{
+	box-sizing		: border-box !important;
+
+	display			: flex;
+	
+	position		: fixed;
+	
+	left			: 0;
+	right			: 0;
+	bottom			: 0;
+	
+	margin			: 40px;
+	padding			: 40px 80px;
+	
+	z-index			: 4000;
+	
+	color: white; background: rgba(0, 0, 0, 0.8); text-align: center; font-size: 25px;
+}
+
+#mwNotification.fade
+{
+	opacity			: 0;
+	transition		: opacity 200ms ease-in-out 0ms;
+}
+
+#mwNotification.fade.visible
+{
+	opacity			: 1;
+}
+
+#mwNotification.hidden
+{
+	display			: none;
+}
+
+#mwNotification .body
+{
+	margin			: auto;
+	min-height		: 40px;
+}
+
+@media screen and (min-width: 1680px) {
+
+/* 
+	Normal maximized windows should not get too wide
+*/
+#mwNotification
+{
+	margin-left		: auto;
+	margin-right		: auto;
+	max-width		: 1600px;
+}
+
+}
+
+/* ---- DEBUG WINDOW -------------------------------------------------------------------------------------------------------- */
+
+#w_systemDebug
+{
+	z-index			: 10000 !important;
+}
+
+#debugOutput
+{
+	color			: yellow; 
+	background-color	: #5A5A50; 
+	font-family		: Consolas;
+	font-size		: 13px;
+}
+
+#debugOutput>div
+{
+	padding			: 20px;
+}
+
+#debugOutput #wDebugSession,
+#debugOutput #wDebugSession iframe,
+#debugOutput #wDebugPhpInfo,
+#debugOutput #wDebugPhpInfo iframe
+{
+	display			: block;
+
+	width			: 100%;
+	height			: 100%;
+	padding			: 0px;
+	margin			: 0px;
+
+	border			: none;
+}
+
+#debugOutput iframe
+{
+	position		: absolute;
+	top			: 0;
+	bottom			: 0;
+	left			: 0;
+	right			: 0;
+}

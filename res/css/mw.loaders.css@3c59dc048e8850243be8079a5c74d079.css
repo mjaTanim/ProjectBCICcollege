@@ -1,0 +1,96 @@
+
+.mwLoader.basic {
+	position		: relative;
+	top			: 50%;
+
+	width			: 230px; 
+	height			: 20px;
+	
+	margin			: auto;
+	margin-top		: -10px;
+}
+
+.mwLoader.basic>DIV {
+	position		: absolute;
+	top			: 0;
+
+	width			: 20px;
+	height			: 20px;
+
+	transform		: scale(0.3);
+
+
+	background-color	: transparent;
+
+	animation-name			: bounce;
+	animation-duration		: 1500ms;
+	animation-iteration-count	: infinite;
+	animation-direction		: normal;
+
+}
+
+
+	.mwLoader.basic>DIV:nth-child(1) {
+		left			: 0px;
+		animation-delay		: 150ms;
+	}
+	
+
+	.mwLoader.basic>DIV:nth-child(2) {
+		left			: 30px;
+		animation-delay		: 300ms;
+	}
+	
+
+	.mwLoader.basic>DIV:nth-child(3) {
+		left			: 60px;
+		animation-delay		: 450ms;
+	}
+	
+
+	.mwLoader.basic>DIV:nth-child(4) {
+		left			: 90px;
+		animation-delay		: 600ms;
+	}
+	
+
+	.mwLoader.basic>DIV:nth-child(5) {
+		left			: 120px;
+		animation-delay		: 750ms;
+	}
+	
+
+	.mwLoader.basic>DIV:nth-child(6) {
+		left			: 150px;
+		animation-delay		: 900ms;
+	}
+	
+
+	.mwLoader.basic>DIV:nth-child(7) {
+		left			: 180px;
+		animation-delay		: 1050ms;
+	}
+	
+
+	.mwLoader.basic>DIV:nth-child(8) {
+		left			: 210px;
+		animation-delay		: 1200ms;
+	}
+	
+
+@keyframes bounce {
+	0% {
+		transform		: scale(0.3);
+		background-color	: transparent;
+	}
+
+	20% {
+		transform		: scale(1);
+		background-color	: silver;
+	}
+
+	100% {
+		transform		: scale(0.3);
+		background-color	: transparent;
+	}
+}
