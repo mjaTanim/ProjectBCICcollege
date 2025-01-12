@@ -1,0 +1,121 @@
+.vSyntax {
+	color			: yellow;
+	background-color	: #5A5A50;
+
+	font-size		: 14px;
+	font-family		: Consolas;
+
+	display			: block; 
+
+	font-style		: normal;
+	font-weight		: normal;
+	
+	white-space		: pre;
+}
+
+.vSyntax H1 {
+	color			: white;
+	font-size		: 110%;
+}
+
+.vSyntax H2 {
+	color			: white;
+	font-size		: 105%;
+}
+
+.vSyntax .Type {
+	color			: silver;
+}
+
+.vSyntax .Keyword {
+	color			: white;
+	font-weight		: bold;
+}
+
+.vSyntax .Identifier {
+	color			: yellow;
+}
+
+.vSyntax .Symbol {
+	color			: #66CCFF;
+}
+
+.vSyntax .Comment {
+	color			: #999999;
+}
+
+.vSyntax .String {
+	white-space		: pre;
+	color			: #DF9FF4;
+}
+
+.vSyntax .Numeric {
+	color			: #00FF00;
+}
+
+.vSyntax .Float {
+	color			: #66FF00;
+}
+
+.vSyntax .Boolean {
+	color			: white;
+	font-weight		: bold;
+	text-transform		: uppercase;
+}
+
+.vSyntax .Null {
+	color			: black;
+	font-weight		: bold;
+	text-transform		: uppercase;
+}
+
+.vSyntax .Error {
+	color			: red;
+}
+
+.vSyntax .Specials {
+	color			: #FFCC66;
+	font-weight		: bold;
+}
+
+.vSyntax .Property {
+	color			: #FFFF99;
+	font-weight		: bold;
+}
+
+.vSyntax .spoilerButton {
+	display			: inline-block;
+
+	width			: 9px;
+	height			: 9px;
+	line-height		: 9px;
+
+	text-align		: center;
+	
+	border			: white 1px solid;
+	color			: white;
+	
+	background-color	: #333399;
+
+	font-size		: 13px;
+	
+	cursor			: pointer; 
+	
+}
+
+.vSyntax .spoilerButton:hover {
+	background-color	: #366F98 !important;
+}
+
+.vSyntax TR:hover {
+	background-color	: rgba(0, 0, 0, 0.05) !important;
+}
+
+.vSyntax TR {
+	-webkit-transition	: all 0.2s ease-in-out;
+	-moz-transition		: all 0.2s ease-in-out;
+	-o-transition		: all 0.2s ease-in-out;
+	-ms-transition		: all 0.2s ease-in-out;
+	transition		: all 0.2s ease-in-out;
+}
+

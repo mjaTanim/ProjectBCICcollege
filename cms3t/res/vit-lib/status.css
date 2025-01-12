@@ -1,0 +1,68 @@
+.success {
+	color:#66FFAA;
+}
+
+.warning {
+	color:#FFAAAA;
+}
+
+.error {
+	color:#FF0000;
+}
+
+.processing {
+	color:#0099FF;
+}
+
+.status.Success,
+.status_success {
+	font-family:Arial, Helvetica, sans-serif;
+	font-weight:bold;
+	font-size: 11px;
+	color:#009933;
+}
+
+.status.Error,
+.status_error {
+	font-family:Arial, Helvetica, sans-serif;
+	font-weight:bold;
+	font-size: 11px;
+	color:#FF0000;
+}
+
+.status.Processing,
+.status_processing {
+	font-family:Arial, Helvetica, sans-serif;
+	font-weight:bold;
+	font-size: 11px;
+	color:#0099FF;
+}
+
+.status.Warning,
+.status_warning {
+	font-family:Arial, Helvetica, sans-serif;
+	font-weight:bold;
+	font-size: 11px;
+	color:#FFAAAA;
+}
+
+.status_cap, .status_caption {
+	font-family:Arial, Helvetica, sans-serif;
+	font-weight:bold;
+	font-size: 11px;
+	color:#CC3300;
+}
+
+.status.Hint,
+.status_hint {
+	font-family:Arial, Helvetica, sans-serif;
+	font-weight:bold;
+	font-size: 11px;
+	color:#CCCCCC;
+}
+
+#status_total TD{
+	padding:0px;
+	margin:0px;
+	border:none;
+} 
