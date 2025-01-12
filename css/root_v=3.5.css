@@ -1,0 +1,55 @@
+/*!
+ |-----------------------------------------------------------------------------------------------------------
+ |
+ |
+ |
+ | Root Variables
+ |
+ |
+ |
+ |-----------------------------------------------------------------------------------------------------------
+*/
+
+:root {
+
+  /*
+   |-----------------------------------------------------------
+   |
+   | Colors
+   |
+   |-----------------------------------------------------------
+  */
+  --color-gray-1:             #f8f9fa;
+  --color-gray-2:             #e9ecef;
+  --color-gray-3:             #dee2e6;
+  --color-gray-4:             #ced4da;
+  --color-gray-5:             #adb5bd;
+  --color-gray-6:             #6c757d;
+  --color-gray-7:             #495057;
+  --color-gray-8:             #343a40;
+  --color-gray-9:             #212529;
+  --color-gray-10:            #181818;
+
+  --color-white:              #ffffff;
+  --color-light:              var(--color-gray-2);
+  --color-dark:               var(--color-gray-10);
+  --color-black:              #000000;
+
+  --color-primary-l-3:        #CAEDE7;
+  --color-primary-l-2:        #96DBCF;
+  --color-primary-l-1:        #62C9B7;
+  --color-primary:            #2EB7A0;
+  --color-primary-d-1:        #228978;
+  --color-primary-d-2:        #175B50;
+  --color-primary-d-3:        #0B2D28;
+
+  --color-secondary-lightest: #FDE3DB;
+  --color-secondary-lighter:  #FCC8B8;
+  --color-secondary-light:    #FBAC94;
+  --color-secondary:          #FA9171;
+  --color-secondary-dark:     #BB6C54;
+  --color-secondary-darker:   #7D4838;
+  --color-secondary-darkest:  #3E241C;
+
+  --color-vibrant:            #F76033;
+}

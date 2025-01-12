@@ -1,0 +1,11 @@
+.data-animate-fade-in-upward {
+  opacity: 0;
+  transform: translate(0, 90px);
+}
+
+.data-animate-active {
+  transition: opacity 0.9s linear, transform 0.6s ease-in;
+  transform: translate(0,0);
+  transition-delay: var(--transition-delay);
+  opacity: 1;
+}
