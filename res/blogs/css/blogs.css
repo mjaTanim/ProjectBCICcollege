@@ -1,0 +1,90 @@
+/* WP base classes */
+
+.alignleft {
+	float: left;
+}
+.alignleft img {
+	display: block;	
+}
+.aligncenter {
+	
+}
+.alignright {
+	float: right;
+}
+.alignright img {
+	display: block;	
+}
+/* ------------------------------------------------------------------------------------- */
+
+.wpex_post_list_style {
+	padding: 10px;
+}
+.wpex_post_style {
+	margin: 10px;
+	padding: 10px;
+	background: #eee;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+}
+.wpex_post_style ol, .wpex_post_style ul {
+	margin-left: 20px;
+}
+.wpex_post_title_style {
+	padding: 5px 0 5px 20px;
+	font-size: 1.3em;
+}
+.wpex_post_author_style {
+	padding:  0 0 0 20px;
+}
+.wpex_post_body_style p {
+	margin-top: 5px;
+}
+
+.wpexCategoriesListStyle {
+	margin: 10px;
+	padding: 10px;
+	background: #eee;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+}
+
+.wpexCategoriesListStyle div {
+	display: inline-block;
+	margin: 0 10px 0 0;
+}
+
+.wpex_categories_list_style {
+	margin-top: 5px;
+	background: #eee;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+}
+.wpex_categories_style {
+	padding: 0 10px 0 0;
+	display: inline-block;
+}
+.wpexCategoriesListStyle .selected {
+	background: #ccc;
+	padding: 5px 5px;
+	webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+
+/* Socials */
+.blogShareIcon, .blogShareCounter, .shareButton { float: left; }
+
+/* demo - cards */
+.post-block-cards { background: none repeat scroll 0 0 #333333; border-radius: 4px 4px 4px 4px; display: block; margin-bottom: 20px; margin-right: 0; float: left; }
+
+.blog-post-prev {  }
+.blog-post-next { float: right; }
+
+
+/* -- CROP -- */
+.blogs-post-crop-icon { background: url(../../pages/images/liveEd/tools.30x.png) no-repeat transparent; background-position: -300px top; width: 30px; height: 30px; position: relative; background-color: white; opacity: 0.5; }
+.blogs-post-crop-icon:hover { background-position: -300px bottom; opacity: 1; }

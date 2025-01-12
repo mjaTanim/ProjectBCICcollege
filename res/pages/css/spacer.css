@@ -1,0 +1,89 @@
+/* Tricky height to get use of liveEd min-height */
+.mwPageBlock.Spacer.Float {
+	height		: 1px;	
+}
+
+/* Making sure contents wrapper follows dimensions */
+.mwPageBlock.Spacer.Float .blockContents {
+	height		: 100%;	
+}
+
+
+DIV.mwPageBlock.Spacer .ui-resizable-s {
+	bottom			: 5px;
+}
+
+DIV.mwPageBlock.Spacer:hover .ui-resizable-s {
+	opacity			: 1;
+}
+
+.mwSpacer {
+	/* Using preserve-3d to prevent blur on divider, cuz using translate for mid positioning */
+	-webkit-transform-style	: preserve-3d;
+	-moz-transform-style	: preserve-3d;
+	transform-style		: preserve-3d;
+}
+
+.mwSpacer.small {
+	height		: 40px;
+}
+
+.mwSpacer.medium {
+	height		: 70px;
+}
+
+.mwSpacer.large {
+	height		: 100px;
+}
+
+.mwSpacer.vrt {
+	height		: 100%;
+}
+
+.mwDivider {
+	position	: relative;
+
+/* 
+	Width and height are 0 by default and are altered by designers or widget
+	Should have width/height for positioning to work correctly
+*/
+	width		: 0px;
+	height		: 0px;
+
+	margin		: auto;
+	border		: none;
+
+  	border		: 1px inset #DDD !important;
+}
+
+.mwDivider.hor {
+	position	: absolute;
+}
+
+.mwDivider.hor.top {
+	top		: 0px;
+}
+
+.mwDivider.hor.middle {
+	top		: 50%;
+}
+
+.mwDivider.hor.bottom {
+	bottom		: 0px;
+}
+
+.mwDivider.vrt {
+	position	: absolute;
+}
+
+.mwDivider.vrt.top {
+	left		: 0px;
+}
+
+.mwDivider.vrt.middle {
+	left		: 50%;
+}
+
+.mwDivider.vrt.bottom {
+	right		: 0px;
+}

@@ -1,0 +1,273 @@
+
+/* ---- TOOLS ------------------------------------------------------------------------------------------------------------------ */
+
+.mwImgEd .tools {
+	position		: absolute;
+}
+
+.mwImgEd .tools>* {
+	display			: inline-block;
+	margin-left		: 3px;
+}
+
+.mwImgEd .tools>*:first-child {
+	margin-left		: 0;
+}
+
+.mwImgEd .main.tools {
+	bottom			: 30px;
+	left			: 0;
+	right			: 0;
+	
+	/* Preventing site css to mess up with tool bar layout */
+	height			: 24px;
+	line-height		: 24px;
+	
+	text-align		: center;
+
+	pointer-events		: none;	
+	
+	transition		: none;
+}
+
+.mwImgEd .main.tools * {
+	transition		: none;
+}
+
+/* ---- DIVIDERS ---- */
+
+.mwImgEd .divider {
+	width			: 5px;
+	height			: 24px;
+	background		: none;
+}
+
+/* ---- BUTTONS ---- */
+
+.mwImgEd .button {
+	width			: 24px;
+	height			: 24px;
+
+	background		: no-repeat transparent left top;
+	background-image	: url('../images/imged.png');
+	
+	opacity			: 0.8;
+	cursor			: pointer;
+
+	pointer-events		: auto;	
+}
+
+.mwImgEd .button:hover {
+	background-position-y	: bottom;
+}
+
+.mwImgEd .button.flip.hor { background-position: -0px top; }
+.mwImgEd .button.flip.ver { background-position: -24px top; }
+.mwImgEd .button.rotate.left { background-position: -48px top; }
+.mwImgEd .button.rotate.right { background-position: -72px top; }
+.mwImgEd .button.zoom.out { background-position: -96px top; }
+.mwImgEd .button.zoom.in { background-position: -120px top; }
+.mwImgEd .button.rezise.ver { background-position: -144px top; }
+.mwImgEd .button.resize.hor { background-position: -168px top; }
+.mwImgEd .button.resize.corner { background-position: -192px top; }
+.mwImgEd .button.rst.undo { background-position: -216px top; }
+.mwImgEd .button.rst.reset { background-position: -240px top; }
+
+.mwImgEd .button.debug {
+	opacity			: 0.5;
+	background		: url('../../cms3t/res/images/console.32x.png') no-repeat transparent center center;
+}
+
+.mwImgEd .button.debug:hover {
+	opacity			: 1;
+}
+
+.mwImgEd.no-rotate .button.rotate {
+	display			: none;
+}
+
+.mwImgEd.no-flip .button.flip {
+	display			: none;
+}
+
+.mwImgEd.no-reset .button.rst {
+	display			: none;
+}
+
+/* ---- ZOOM ---- */
+
+/* Floating all children in zoom bar to have good predictable sizes */
+/* Thus canceling float after zoom */
+
+.mwImgEd .slider {
+	position		: relative; 
+	
+	width			: 250px;
+	height			: 0px;
+	
+	margin			: 11px 9px;
+	margin-left		: 12px;
+
+	border			: 1px solid rgba(255,255,255,0.8);
+	background		: none;
+
+	pointer-events		: auto;	
+}
+
+.mwImgEd .slider .ui-slider-handle {
+	position		: absolute;
+
+	top			: 50%;
+	margin-top		: -9px;
+	margin-left		: -9px;
+
+	width			: 14px;
+	height			: 14px;
+
+	border			: 2px solid white;
+	-moz-border-radius	: 9px;	
+	-webkit-border-radius	: 9px;
+	border-radius		: 9px;
+	
+	background		: black; 
+}
+
+/* 
+	Dummy is placed on left in main tool bar 
+	and mimics width of buttons on the left.
+	As result - all tools are native centered around slider 
+	(i.e. slider is on the center), and no additional math required in case slider is hidden
+	  
+*/
+
+.mwImgEd .dummy {
+	width			: 59px;
+	height			: 24px;
+	background		: none;
+}
+
+.mwImgEd.no-dummy .dummy {
+	display			: none;
+}
+
+.mwImgEd.no-slider .slider,
+.mwImgEd.no-slider .dummy
+{
+	display			: none;
+}
+
+.mwImgEd.no-zoom .zoom
+{
+	display			: none;
+}
+
+.mwImgEd.no-tools .main.tools
+{
+	display			: none;
+}
+
+/* ---- RESIZE ----------------------------------------------------------------------------------------------------------------- */
+
+.mwImgEd .ui-resizable-handle {
+}	
+
+.mwImgEd .ui-resizable-se {
+	width			: 24px;
+	height			: 24px;
+	background		: url('../images/imged.png') no-repeat transparent -192px top;
+}
+
+.mwImgEd .ui-resizable-s {
+	bottom			: 0px;
+	height			: 24px;
+}
+
+.mwImgEd .ui-resizable-s:after {
+	content			: '';
+	display			: block;
+	
+	position		: absolute;
+	left			: 50%;
+	margin-left		: -12px;
+	
+	width			: 24px;
+	height			: 24px;
+	
+	background		: url('../images/imged.png') no-repeat transparent -144px top;
+}
+
+.mwImgEd .ui-resizable-e {
+	right			: 0px;
+	width			: 24px;
+	background		: none !important;
+}	
+
+.mwImgEd .ui-resizable-e:after {
+	content			: '';
+	display			: block;
+	
+	position		: absolute;
+	top			: 50%;
+	margin-top		: -12px;
+	
+	width			: 24px;
+	height			: 24px;
+	
+	background		: url('../images/imged.png') no-repeat transparent -168px top;
+}
+
+/* ---- OVERLAY ---------------------------------------------------------------------------------------------------------------- */
+
+.mwImgEdOverlay {
+	position		: fixed;
+	
+	top			: 0;
+	left			: 0;
+	right			: 0;
+	bottom			: 0;
+
+	background		: rgba(0, 0, 0, 0.2);
+	z-index			: 5000; 
+}
+
+.mwImgEdOverlay.invisible {
+	background		: none;
+}
+
+/* ---- LOADER ---------------------------------------------------------------------------------------------------------------- */
+
+.mwImgEd.loading:after {
+	content			: '';
+	display			: block;
+	
+	position		: absolute;
+	left			: 0;
+	right			: 0;
+	top			: 0;
+	bottom			: 0;
+	
+	background		: url('../../cms3t/res/images/loaders/bar.sc.gif') no-repeat transparent center center;
+}
+
+/* ---- MISC ----------------------------------------------------------------------------------------------------------------- */
+
+.events-off,
+.events-off * {
+	pointer-events		: none;
+}
+
+.mwImgEd,
+.mwImgEd *,
+.mwImgEdOverlay,
+.events-on {
+	pointer-events		: auto;
+}
+
+.scroll-off {
+	overflow		: hidden;
+}
+
+.scroll-on {
+	overflow		: auto;
+}
+

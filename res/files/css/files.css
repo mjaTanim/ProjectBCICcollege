@@ -1,0 +1,609 @@
+/* #### Window Layout ####################################################################################################### */
+
+#mwFilesEd .itemsPanel.dropHover
+{
+	box-shadow		: 1px 1px 4px #0B994E inset;
+}
+
+/* #### Files Index and Modes ############################################################################################### */
+
+#mwFilesEd .itemsList 
+{
+	/* 
+		Adding input like paddings to match inputs layout and allow shadows around tiles
+		Additionally - compensating added paddings and tile margins with negative margin. 
+		This way tiles will be perfectly alligned with forms layout. 
+	*/
+	margin			: -6px -6px;
+	padding			: 4px 4px;
+}
+
+#mwFilesEd .itemsList li 
+{
+	list-style		: none;
+
+	float			: left;
+	position		: relative;
+
+	margin			: 6px;
+	border			: 1px solid #DEDEDE;
+
+	background-color	: #FFFFFF;
+
+	cursor			: pointer;
+	overflow		: hidden;
+
+	transition		: box-shadow 200ms ease-in-out 0ms, border 200ms ease-in-out 0ms;
+}
+
+#mwFilesEd .itemsList li:hover 
+{
+	box-shadow		: 0px 0px 3px rgba(0, 0, 0, 0.5);
+}
+
+#mwFilesEd .itemsList li.placeholder 
+{
+	border-color		: red;
+}
+
+#mwFilesEd .itemsList li.selected 
+{
+	border-color		: #2EB7A0;
+	box-shadow		: 0px 0px 4px rgba(0, 0, 0, 1);
+}
+
+#mwFilesEd .itemsList li.error 
+{
+	border-color		: #FF0000;
+}
+
+#mwFilesEd .itemsList li.bg 
+{
+	background		: url('../../../cms3t/res/images/forms/loading.32x10.gif') no-repeat center center white;
+}
+
+#mwFilesEd .itemsList li .bg 
+{
+	background		: url('../../../cms3t/res/images/forms/loading.32x10.gif') no-repeat center center transparent;
+}
+
+#mwFilesEd .itemsList li.private { position: relative; }
+#mwFilesEd .itemsList li.private::after { content: ''; display: block; width: 28px; height: 28px; margin: 0px; position: absolute; top: 0px; pointer-events: none; background: url('../../../cms3t/res/images/dialogs/icons.28x.png') no-repeat transparent; background-position: 28px 0px; }
+#mwFilesEd .itemsList li.private.left::after { left: 0; right: auto; margin-left: 0px; margin-right: 0px; }
+#mwFilesEd .itemsList li.private.center::after { left: 50%; right: auto; margin-left: -14px; margin-right: 0px; }
+#mwFilesEd .itemsList li.private::after, #mwFilesEd .itemsList li.private.right::after { left: auto; right: 0; margin-left: 0px; margin-right: 0px; }
+#mwFilesEd .itemsList li.private::after { background-position: -532px -56px; }
+
+/* ---- Thumbs -------------------------------------------------------------------------------------------------------------- */
+
+#mwFilesEd .itemsList li.thumbs 
+{
+	width			: 217px;
+	height			: 152px;
+}
+
+	
+	#mwFilesEd .itemsList[data-count="1"]:not(.noCol) li.thumbs { width : calc(100% - 12px) !important; }
+	
+		
+	#mwFilesEd .itemsList[data-count="2"]:not(.noCol) li.thumbs { width : calc(50% - 12px) !important; }
+	
+		
+	#mwFilesEd .itemsList[data-count="3"]:not(.noCol) li.thumbs { width : calc(33.33% - 12px) !important; }
+	
+		
+	#mwFilesEd .itemsList[data-count="4"]:not(.noCol) li.thumbs { width : calc(25% - 12px) !important; }
+	
+		
+	#mwFilesEd .itemsList[data-count="5"]:not(.noCol) li.thumbs { width : calc(20% - 12px) !important; }
+	
+		
+	#mwFilesEd .itemsList[data-count="6"]:not(.noCol) li.thumbs { width : calc(16.66% - 12px) !important; }
+	
+		
+	#mwFilesEd .itemsList[data-count="7"]:not(.noCol) li.thumbs { width : calc(14.28% - 12px) !important; }
+	
+		
+	#mwFilesEd .itemsList[data-count="8"]:not(.noCol) li.thumbs { width : calc(12.5% - 12px) !important; }
+	
+		
+	#mwFilesEd .itemsList[data-count="9"]:not(.noCol) li.thumbs { width : calc(11.11% - 12px) !important; }
+	
+		
+	#mwFilesEd .itemsList[data-count="10"]:not(.noCol) li.thumbs { width : calc(10% - 12px) !important; }
+	
+		
+	#mwFilesEd .itemsList[data-count="11"]:not(.noCol) li.thumbs { width : calc(9.09% - 12px) !important; }
+	
+		
+	#mwFilesEd .itemsList[data-count="12"]:not(.noCol) li.thumbs { width : calc(8.33% - 12px) !important; }
+	
+		
+	#mwFilesEd .itemsList[data-count="13"]:not(.noCol) li.thumbs { width : calc(7.69% - 12px) !important; }
+	
+		
+	#mwFilesEd .itemsList[data-count="14"]:not(.noCol) li.thumbs { width : calc(7.14% - 12px) !important; }
+	
+		
+	#mwFilesEd .itemsList[data-count="15"]:not(.noCol) li.thumbs { width : calc(6.66% - 12px) !important; }
+	
+	
+/* ---- Title ---- */
+
+#mwFilesEd .itemsList li.thumbs .title 
+{
+
+	position		: absolute;
+	bottom			: 0px;
+	left			: 0px;
+	right			: 0px;
+	
+	color			: #E8E8E8;
+	background		: rgba(0, 0, 0, 0.6) no-repeat;
+	
+	height			: 24px;
+	line-height		: 24px;
+
+	padding			: 0px 10px;
+	
+	overflow		: hidden;
+
+	transition		: all 200ms ease-in-out 0ms;
+
+}
+
+#mwFilesEd .itemsList li.thumbs.thumb .title 
+{
+	height			: 0px;
+}
+
+#mwFilesEd .itemsList li.thumbs:hover .title,
+#mwFilesEd .itemsList li.thumbs.selected .title,
+#mwFilesEd .itemsList li.thumbs.loading .title 
+{
+	height			: 24px;
+	color			: white;
+}
+
+/* ---- Gear button ---- */
+
+#mwFilesEd .itemsList li.thumbs .ghear 
+{
+	width			: 24px;
+	height			: 24px;
+}
+
+#mwFilesEd .itemsList li.thumbs:hover .ghear 
+{
+}
+
+/* ---- Loader ---- */
+
+#mwFilesEd .itemsList li.thumbs .loader 
+{
+	display			: none;
+	
+	position		: absolute;
+	bottom			: 24px;
+	left			: 0px;
+	right			: 0px;
+	
+	height			: 3px;
+	
+	background-color	: white;
+}
+
+#mwFilesEd .itemsList li.thumbs.loading .loader 
+{
+	display			: block;
+} 
+
+#mwFilesEd .itemsList li.thumbs .loader .fill 
+{
+	width			: 0px;
+	height			: 100%;
+	
+	background-color	: #2EB7A0;
+}
+
+/* ---- Details ------------------------------------------------------------------------------------------------------------- */
+
+#mwFilesEd .itemsList li.details 
+{
+	width			: 422px;
+/*	height			: 70px; */
+}
+
+	
+	#mwFilesEd .itemsList[data-count="1"]:not(.noCol) li.details { width : calc(100% - 12px) !important; }
+	
+		
+	#mwFilesEd .itemsList[data-count="2"]:not(.noCol) li.details { width : calc(100% - 12px) !important; }
+	
+		
+	#mwFilesEd .itemsList[data-count="3"]:not(.noCol) li.details { width : calc(50% - 12px) !important; }
+	
+		
+	#mwFilesEd .itemsList[data-count="4"]:not(.noCol) li.details { width : calc(50% - 12px) !important; }
+	
+		
+	#mwFilesEd .itemsList[data-count="5"]:not(.noCol) li.details { width : calc(33.33% - 12px) !important; }
+	
+		
+	#mwFilesEd .itemsList[data-count="6"]:not(.noCol) li.details { width : calc(25% - 12px) !important; }
+	
+		
+	#mwFilesEd .itemsList[data-count="7"]:not(.noCol) li.details { width : calc(25% - 12px) !important; }
+	
+		
+	#mwFilesEd .itemsList[data-count="8"]:not(.noCol) li.details { width : calc(20% - 12px) !important; }
+	
+		
+	#mwFilesEd .itemsList[data-count="9"]:not(.noCol) li.details { width : calc(16.66% - 12px) !important; }
+	
+		
+	#mwFilesEd .itemsList[data-count="10"]:not(.noCol) li.details { width : calc(16.66% - 12px) !important; }
+	
+		
+	#mwFilesEd .itemsList[data-count="11"]:not(.noCol) li.details { width : calc(14.28% - 12px) !important; }
+	
+		
+	#mwFilesEd .itemsList[data-count="12"]:not(.noCol) li.details { width : calc(12.5% - 12px) !important; }
+	
+		
+	#mwFilesEd .itemsList[data-count="13"]:not(.noCol) li.details { width : calc(12.5% - 12px) !important; }
+	
+		
+	#mwFilesEd .itemsList[data-count="14"]:not(.noCol) li.details { width : calc(11.11% - 12px) !important; }
+	
+		
+	#mwFilesEd .itemsList[data-count="15"]:not(.noCol) li.details { width : calc(10% - 12px) !important; }
+	
+	
+/* ---- Info ---- */
+
+#mwFilesEd .itemsList li.details table
+{
+	width			: 100%;
+	border-collapse		: collapse;
+	white-space		: nowrap;
+}
+
+#mwFilesEd .itemsList li.details th
+{
+	width			: 40px;
+	padding			: 0px 10px;
+
+	text-align		: right;
+	font-weight		: normal;
+}
+
+#mwFilesEd .itemsList li.details th,
+#mwFilesEd .itemsList li.details td
+{
+	max-width		: 200px;
+	height			: 23.33px;
+	line-height		: 23.33px;
+
+	overflow		: hidden;
+	text-overflow		: ellipsis;
+}
+
+#mwFilesEd .itemsList li.details .info
+{
+	width			: 1px;
+	padding-right		: 10px;
+}
+
+/* ---- Icon ---- */
+
+#mwFilesEd .itemsList li.details .icon
+{
+	width			: 70px;
+	height			: 70px;
+	
+	padding			: 0px;
+	
+	text-align		: center;
+	vertical-align		: middle;
+}
+
+#mwFilesEd .itemsList li.details .icon>div
+{
+	width			: 60px;
+	height			: 60px;
+
+	margin			: auto;
+	
+	overflow		: hidden;
+}
+
+/* ---- Loader ---- */
+
+#mwFilesEd .itemsList li.details .loader 
+{
+	display			: none; 
+}
+
+#mwFilesEd .itemsList li.details.loading .loader 
+{
+	display			: block; 
+}
+
+#mwFilesEd .itemsList li.details .loader .fill 
+{
+	width			: 0px;
+	height			: 100%;
+
+	background-color	: rgba(46, 183, 160, 0.1);
+}
+
+/* ---- List ---------------------------------------------------------------------------------------------------------------- */
+
+#mwFilesEd .itemsList li.list
+{
+	width			: 422px;
+	height			: 40px;
+	line-height		: 40px;
+
+	background		: no-repeat center center white;
+}
+
+	
+	#mwFilesEd .itemsList[data-count="1"]:not(.noCol) li.list { width : calc(100% - 12px) !important; }
+	
+		
+	#mwFilesEd .itemsList[data-count="2"]:not(.noCol) li.list { width : calc(100% - 12px) !important; }
+	
+		
+	#mwFilesEd .itemsList[data-count="3"]:not(.noCol) li.list { width : calc(50% - 12px) !important; }
+	
+		
+	#mwFilesEd .itemsList[data-count="4"]:not(.noCol) li.list { width : calc(50% - 12px) !important; }
+	
+		
+	#mwFilesEd .itemsList[data-count="5"]:not(.noCol) li.list { width : calc(33.33% - 12px) !important; }
+	
+		
+	#mwFilesEd .itemsList[data-count="6"]:not(.noCol) li.list { width : calc(25% - 12px) !important; }
+	
+		
+	#mwFilesEd .itemsList[data-count="7"]:not(.noCol) li.list { width : calc(25% - 12px) !important; }
+	
+		
+	#mwFilesEd .itemsList[data-count="8"]:not(.noCol) li.list { width : calc(20% - 12px) !important; }
+	
+		
+	#mwFilesEd .itemsList[data-count="9"]:not(.noCol) li.list { width : calc(16.66% - 12px) !important; }
+	
+		
+	#mwFilesEd .itemsList[data-count="10"]:not(.noCol) li.list { width : calc(16.66% - 12px) !important; }
+	
+		
+	#mwFilesEd .itemsList[data-count="11"]:not(.noCol) li.list { width : calc(14.28% - 12px) !important; }
+	
+		
+	#mwFilesEd .itemsList[data-count="12"]:not(.noCol) li.list { width : calc(12.5% - 12px) !important; }
+	
+		
+	#mwFilesEd .itemsList[data-count="13"]:not(.noCol) li.list { width : calc(12.5% - 12px) !important; }
+	
+		
+	#mwFilesEd .itemsList[data-count="14"]:not(.noCol) li.list { width : calc(11.11% - 12px) !important; }
+	
+		
+	#mwFilesEd .itemsList[data-count="15"]:not(.noCol) li.list { width : calc(10% - 12px) !important; }
+	
+	
+#mwFilesEd .itemsList li.list table 
+{
+	width			: 100%;
+	border-collapse		: collapse;
+}
+
+#mwFilesEd .itemsList li.list td 
+{
+	text-align		: center;
+	vertical-align		: middle;
+
+	max-width		: 300px;
+	text-overflow		: ellipsis;
+}
+
+/* ---- Icon ---- */
+
+#mwFilesEd .itemsList li.list .icon
+{
+	width			: 40px;
+	height			: 40px;
+	
+	padding			: 1px;
+	
+	text-align		: center;
+	vertical-align		: middle;
+}
+
+#mwFilesEd .itemsList li.list .icon>div
+{
+	width			: 38px;
+	height			: 38px;
+
+	margin			: auto;
+	
+	overflow		: hidden;
+}
+
+/* ---- Loader ---- */
+
+#mwFilesEd .itemsList li.list .loader
+{
+	display			: none;
+}
+
+#mwFilesEd .itemsList li.list.loading .loader
+{
+	display			: block;
+}
+
+#mwFilesEd .itemsList li.list .loader .fill
+{
+	width			: 0px;
+	height			: 100%;
+
+	background-color	: rgba(46, 183, 160, 0.1);
+	
+}
+
+/* #### Files Details ####################################################################################################### */
+
+#mwFilesEd .fileDetails
+{
+/*	margin-top		: -8px; */		
+}
+
+#mwFilesEd .fileDetails dt
+{
+	width			: 30%;
+	color			: silver;
+	text-align		: left;
+}
+
+#mwFilesEd .fileDetails dd
+{
+	width			: 70%;
+}
+
+#mwFilesEd .fileDetails dd.auto
+{
+	width			: auto;
+}
+
+#mwFilesEd .fileDetails dt,
+#mwFilesEd .fileDetails label
+{
+	padding-bottom		: 0px;
+}
+
+#mwFilesEd .fileDetails label
+{
+	width			: 100%;
+	overflow		: hidden;
+	text-overflow		: ellipsis;
+}
+
+#mwFilesEd .fileDetails .preview 
+{
+/*	border			: none; */
+	padding			: 0px;
+}
+
+#mwFilesEd .fileDetails .preview img 
+{
+	display			: block;
+	width			: 100%;
+	height			: auto;
+}
+
+#mwFilesEd .fileDetails .preview.loading img 
+{
+	height			: 200px;
+	background		: url('../../../cms3t/res/images/forms/loading.48x.gif') no-repeat center transparent;
+} 
+
+/* ==== Media =============================================================================================================== */
+
+#mwFilesEd .mejs-container,
+#mwFilesEd .mejs-container *
+{
+	box-sizing		: content-box !important;
+}
+
+/* ==== liveEd ============================================================================================================== */
+
+/* ---- Embed helper ---- */
+
+.liveEdBlock.File .mwFileEmbed {
+	min-height		: 16px;	
+}
+
+.mwPageBlock.File .mwFileEmbed .helperWrap {
+	width			: 100%;
+	height			: 100%;
+	position		: relative;
+}
+
+.mwPageBlock.File .mwFileEmbed .mwFileHelper {
+/*/
+	position		: absolute;
+	top			: 0px;
+	left			: 0px;
+	right			: 0px;
+	bottom			: 0px;
+/**/
+	width			: 100%;
+	height			: 100%;
+/*/
+	border			: 2px dashed green;
+	margin			: -2px;
+/**/
+	background-color	: #E2E2E2;
+}
+
+
+.mwPageBlock.File .mwFileEmbed DIV.ui-resizable-e {
+
+	width			: 16px;
+	right			: 5px;
+	background		: url('../../pages/images/liveEd/resize-x.16x.png') no-repeat transparent center center;
+	
+	display			: none !important;
+	
+/*	opacity			: 0.5; */
+	
+}
+
+.mwPageBlock.File.Hover DIV.ui-resizable-e {
+	display			: block !important;
+} 
+
+.mwPageBlock.File .mwFileEmbed.Doc DIV.ui-resizable-e {
+	display			: none !important;
+} 
+
+.mwPageBlock.File .mwFileEmbed DIV.ui-resizable-e:hover {
+/*	opacity			: 1; */
+}
+
+/* ---- Loader ---- */
+
+.mwPageBlock.Image .Loader,
+.mwPageBlock.File .Loader {
+	
+	display			: block;
+	
+	height			: 4px;
+	
+	position		: absolute;
+	bottom			: 0px;
+	left			: 0px;
+	right			: 0px;
+	
+	background		: white !important;
+	
+}
+
+.mwPageBlock.Image .Loader .Fill,
+.mwPageBlock.File .Loader .Fill {
+	
+	width			: 50%;
+	height			: 100%;
+	
+	background		: #0B994E !important;
+}
+
+/*/
+.mwPageBlock.File.Hover .Loader {
+	display			: block;
+}
+
+/**/
